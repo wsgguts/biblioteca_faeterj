@@ -1,0 +1,7 @@
+{
+  "name": "biblioteca-testes-funcionais",
+  "private": true,
+  "description": "Roteiro de testes funcionais no navegador (Encontro 6, Etapa 2)",
+  "scripts": { "test": "node fluxos.js ../prints" },
+  "devDependencies": { "playwright": "1.49.1" }
+}

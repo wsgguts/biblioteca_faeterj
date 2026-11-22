@@ -155,3 +155,8 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+# Biblioteca Digital FAETERJ
+*.db
+*.db-journal
+dist/
+.env
