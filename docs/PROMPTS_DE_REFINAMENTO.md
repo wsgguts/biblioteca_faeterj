@@ -12,19 +12,11 @@ Depois do [Prompt Mestre](PROMPT_MESTRE.md), o código foi gerado em partes e aj
 
 > O Prisma com SQLite não aceita `enum`. Troque os enums de perfil e situação por `String` com valor padrão e documente os valores permitidos em comentário. A validação dos valores deve ficar no Zod e nos services.
 
-> O `Usuario` tem duas relações com `Emprestimo` (como leitor e como bibliotecário que registrou). Nomeie as relações para o Prisma não acusar ambiguidade.
+## 3. Numeração dos documentos
 
-## 3. Regras de negócio
-
-> Na devolução, se houver reserva ativa para o livro, o exemplar não pode voltar para Disponível: ele deve ficar Reservado para o 1º da fila, e a tela precisa avisar o bibliotecário para guardar o livro no balcão. No empréstimo, um exemplar Reservado só pode sair para o leitor que está em 1º lugar.
-
-> Calcule o atraso por dia de calendário, não por horas. Um livro com devolução prevista para hoje ainda está no prazo.
-
-> Entre a verificação do exemplar e a gravação do empréstimo outro bibliotecário pode emprestar o mesmo exemplar. Faça o registro dentro de uma transação e confira de novo a situação do exemplar.
+> O código chama o login de US1 e troca RN03 com RN04. Use a numeração do Product Backlog e da seção 6 do Prompt Mestre: US1 é a pesquisa do acervo, o login atende a US9 ("exigir login e senha nas funções restritas"), RN03 são os campos obrigatórios do leitor e RN04 a matrícula e o e-mail únicos. Corrija comentários, README e nomes dos testes.
 
 ## 4. Interface
-
-> Na pesquisa, o botão "Reservar" só deve aparecer para o perfil Leitor e apenas quando não houver exemplar disponível. Se o leitor já tiver reserva ou já estiver com o livro, mostre isso no lugar do botão.
 
 > O selo "Vencendo" só aparece com 3 dias ou menos, e o empréstimo com vencimento em 4 dias aparece como "No prazo". Use 5 dias como limite, para o leitor ser avisado com antecedência.
 
