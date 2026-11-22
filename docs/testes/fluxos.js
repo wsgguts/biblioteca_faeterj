@@ -46,6 +46,7 @@ async function main() {
   await caso('Login: senha errada mostra mensagem genérica', async () => {
     await login('ana.souza@aluno.faeterj.edu.br', 'errada');
     await esperarTexto('E-mail ou senha');
+    await page.waitForTimeout(400); // espera a transição do botão terminar
     await shot('01-login-erro');
   });
   await caso('Login: usuário desativado (RN05) é bloqueado', async () => {
