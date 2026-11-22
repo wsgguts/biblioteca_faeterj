@@ -14,7 +14,7 @@ function validar(f) {
   return e;
 }
 
-/** UC004 / US4 – cadastro de leitor (RN03: matrícula e e-mail únicos). */
+/** UC004 / US4 – cadastro de leitor (RN03: campos obrigatórios; RN04: matrícula e e-mail únicos). */
 export default function CadastrarLeitor() {
   const notificar = useToast();
   const [f, setF] = useState(VAZIO);

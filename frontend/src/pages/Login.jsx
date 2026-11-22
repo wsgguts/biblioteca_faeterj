@@ -5,7 +5,7 @@ import { useAuth, rotaInicial } from '../context/AuthContext';
 import { mensagemErro } from '../services/api';
 import { Alerta, Campo } from '../components/ui';
 
-/** UC001 / US1 – Login (Heurística 9: mensagem de erro clara, sem revelar qual campo errou). */
+/** Login com JWT (US9: funções restritas exigem login e senha). Heurística 9: mensagem de erro clara, sem revelar qual campo errou. */
 export default function Login() {
   const { entrar } = useAuth();
   const navigate = useNavigate();

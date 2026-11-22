@@ -7,7 +7,7 @@ import { Alerta, Capa, PageHead, StatusBadge, Vazio, useToast } from '../compone
 const CAMPOS = [['todos', 'Todos os campos'], ['titulo', 'Título'], ['autor', 'Autor'], ['assunto', 'Assunto']];
 const FILTROS = [['todos', 'Todos'], ['disp', 'Disponíveis'], ['indisp', 'Indisponíveis']];
 
-/** UC002 / US2 – pesquisa do acervo; UC003 / US3 – reserva de livro indisponível. */
+/** UC001 / US1 – pesquisa do acervo; UC003 / US3 – reserva de livro indisponível. */
 export default function PesquisaLivros() {
   const { usuario } = useAuth();
   const notificar = useToast();

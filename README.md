@@ -64,8 +64,8 @@ O usuário `joao.pereira@biblioteca.faeterj.edu.br` está desativado de propósi
 
 | História | Onde | Roteiro sugerido |
 |---|---|---|
-| US1 Login | /login | Entrar com cada perfil; errar a senha; tentar com o usuário desativado |
-| US2 Pesquisar livros | Pesquisar livros | Buscar "Machado" no campo Autor; usar os filtros Disponíveis/Indisponíveis |
+| Login (US9) | /login | Entrar com cada perfil; errar a senha; tentar com o usuário desativado |
+| US1 Pesquisar livros | Pesquisar livros | Buscar "Machado" no campo Autor; usar os filtros Disponíveis/Indisponíveis |
 | US3 Reservar | Pesquisar livros (Leitor) | Com a Ana, reservar "Memórias Póstumas" (entra em 2º na fila) |
 | US2 Meus empréstimos | Meus empréstimos (Leitor) | Ver o alerta de atraso, o prazo vencendo e cancelar uma reserva |
 | US6 Empréstimo | Registrar empréstimo | Ana é bloqueada por atraso; Carlos + exemplar EX-0019 é aceito com prazo de 14 dias |
@@ -95,9 +95,10 @@ npm test                 # salva as capturas em docs/prints
 
 - **RN01** Só é possível emprestar exemplar com situação Disponível (ou Reservado para o próprio leitor, 1º da fila).
 - **RN02** Reserva só para livro sem exemplar disponível; a fila é por ordem de chegada.
-- **RN03** Matrícula e e-mail são únicos.
-- **RN04** Leitor com empréstimo em atraso não pode pegar novo livro.
-- **RN05** Usuários são desativados, nunca apagados, para manter o histórico.
+- **RN03** O cadastro de leitor exige nome, matrícula, e-mail e telefone.
+- **RN04** Matrícula e e-mail não podem se repetir.
+- **RN05** Usuário desativado não entra no sistema, mas o histórico é mantido (nada é apagado).
+- Leitor com empréstimo em atraso não pode pegar novo livro.
 - Prazo de empréstimo: **14 dias** (ajustável em `PRAZO_EMPRESTIMO_DIAS` no `.env`).
 
 ## Estrutura

@@ -37,30 +37,30 @@ async function main() {
   }
   async function sair() { await page.getByRole('button', { name: 'Sair' }).click(); await page.waitForURL('**/login'); }
 
-  // US1 – login
-  await caso('US1: campos vazios mostram validação', async () => {
+  // Login (US9: acesso com e-mail e senha)
+  await caso('Login: campos vazios mostram validação', async () => {
     await page.goto(`${BASE}/login`);
     await page.getByRole('button', { name: 'Entrar' }).click();
     await esperarTexto('Informe o e-mail.');
   });
-  await caso('US1: senha errada mostra mensagem genérica', async () => {
+  await caso('Login: senha errada mostra mensagem genérica', async () => {
     await login('ana.souza@aluno.faeterj.edu.br', 'errada');
     await esperarTexto('E-mail ou senha');
     await shot('01-login-erro');
   });
-  await caso('US1: usuário desativado é bloqueado', async () => {
+  await caso('Login: usuário desativado (RN05) é bloqueado', async () => {
     await login('joao.pereira@biblioteca.faeterj.edu.br', 'biblio123');
     await page.getByRole('alert').waitFor();
   });
 
   // Leitor
-  await caso('US1: leitor entra e cai na pesquisa', async () => {
+  await caso('Login: leitor entra e cai na pesquisa', async () => {
     await login('ana.souza@aluno.faeterj.edu.br', 'leitor123');
     await page.waitForURL('**/pesquisa');
     await esperarTexto('resultados');
     await shot('02-pesquisa-livros');
   });
-  await caso('US2: pesquisa por autor filtra o acervo', async () => {
+  await caso('US1: pesquisa por autor filtra o acervo', async () => {
     await page.getByLabel('Pesquisar em').selectOption('autor');
     await page.getByLabel('Termo de busca').fill('Machado');
     await page.getByRole('button', { name: 'Pesquisar' }).click();
@@ -68,7 +68,7 @@ async function main() {
       && [...document.querySelectorAll('.livro-card')].every((c) => c.textContent.includes('Machado')));
     await shot('03-pesquisa-autor');
   });
-  await caso('US2: chip Indisponíveis mostra só livros sem exemplar', async () => {
+  await caso('US1: chip Indisponíveis mostra só livros sem exemplar', async () => {
     await page.getByRole('button', { name: 'Indisponíveis' }).click();
     await esperarTexto('Memórias Póstumas');
   });
@@ -139,7 +139,7 @@ async function main() {
     await esperarTexto('Devolução com atraso de 32 dias');
     await shot('10-devolucao-atraso');
   });
-  await caso('US4: e-mail repetido é recusado (RN03)', async () => {
+  await caso('US4: e-mail repetido é recusado (RN04)', async () => {
     await page.getByRole('link', { name: 'Cadastrar leitor' }).click();
     await page.getByRole('button', { name: 'Cadastrar leitor' }).click();
     await esperarTexto('Informe o nome completo.');
@@ -229,7 +229,7 @@ async function main() {
     await p.screenshot({ path: path.join(OUT, '18-celular-menu.png') });
     await p.getByRole('link', { name: 'Meus empréstimos' }).click();
     await p.waitForURL('**/meus-emprestimos');
-    if (await p.locator('.side.aberta').count()) throw new Error('menu não fechou após navegar');
+    await p.locator('.side.aberta').waitFor({ state: 'detached', timeout: 3000 }).catch(() => { throw new Error('menu não fechou após navegar'); });
     await m.close();
     if (largura > 390) throw new Error(`rolagem horizontal: ${largura}px`);
   });

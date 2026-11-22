@@ -10,7 +10,7 @@ function situacao(e) {
   return <StatusBadge status="OK" />;
 }
 
-/** US2 (área do leitor) – empréstimos ativos e reservas. */
+/** UC002 / US2 – empréstimos ativos e reservas. */
 export default function MeusEmprestimos() {
   const notificar = useToast();
   const [emp, setEmp] = useState(null);
